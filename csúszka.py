@@ -5,14 +5,15 @@ root = tb.Window(themename="superhero")
 
 #root = Tk()
 root.title("TTK Bootstrap! Slider/Scale")
-root.iconbitmap('c:/Users/varja/Videos/')
+root.iconbitmap('c:/Users/VarjasiTeodorIstván/Videos/')
 root.geometry('500x350')
 
 
 def scaler(e):
 	my_label.config(text=f'{int(my_scale.get())}%')
+	global sesbesség
 	sesbesség = int(my_scale.get())
-	print(sesbesség)
+
 
 
 
@@ -33,3 +34,4 @@ my_label.pack()
 
 
 root.mainloop()
+print(sesbesség)
