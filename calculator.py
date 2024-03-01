@@ -1,12 +1,16 @@
 from tkinter import *
+import math as matek
 
 root = Tk()
 root.title("Simple Calculator")
 
+#Beviteli mezp
 e = Entry(root, width=35, borderwidth=5)
-e.grid(row=0, column=0, columnspan=3, padx=10, pady=10)
+#Elehlyezése (column, row) és mérete (padx,pady)
+e.grid(row=0, column=0, columnspan=3, padx=10, pady=50)
 
 #e.insert(0, "")
+
 
 def button_click(number):
 	#e.delete(0, END)
@@ -17,13 +21,7 @@ def button_click(number):
 def button_clear():
 	e.delete(0, END)
 
-def button_add():
-	first_number = e.get()
-	global f_num
-	global math
-	math = "addition"
-	f_num = int(first_number)
-	e.delete(0, END)
+
 
 def button_equal():
 	second_number = e.get()
@@ -39,9 +37,19 @@ def button_equal():
 		e.insert(0, f_num * int(second_number))
 
 	if math == "division":
-		e.insert(0, f_num / int(second_number))
+		e.insert(0, f'A szám négyzetgyöke:\n {matek.sqrt(f_num)}')
+
+	if math == "négyzetgyök":
+		e.insert(0, f_num + int(second_number))
 
 	
+
+def button_add(first_number):
+	global f_num
+	global math
+	math = "addition"
+	f_num = int(first_number)
+	e.delete(0, END)
 
 def button_subtract():
 	first_number = e.get()
@@ -67,6 +75,14 @@ def button_divide():
 	f_num = int(first_number)
 	e.delete(0, END)
 
+def button_négyzetgyök():
+	first_number = e.get()
+	global f_num
+	global math
+	math = "négyzetgyök"
+	f_num = int(first_number)
+	e.delete(0, END)
+
 
 # Define Buttons
 
@@ -80,13 +96,14 @@ button_7 = Button(root, text="7", padx=40, pady=20, command=lambda: button_click
 button_8 = Button(root, text="8", padx=40, pady=20, command=lambda: button_click(8))
 button_9 = Button(root, text="9", padx=40, pady=20, command=lambda: button_click(9))
 button_0 = Button(root, text="0", padx=40, pady=20, command=lambda: button_click(0))
-button_add = Button(root, text="+", padx=39, pady=20, command=button_add)
+button_add = Button(root, text="+", padx=39, pady=20, command=lambda: button_add(e.get()))
 button_equal = Button(root, text="=", padx=91, pady=20, command=button_equal)
 button_clear = Button(root, text="Clear", padx=79, pady=20, command=button_clear)
 
 button_subtract = Button(root, text="-", padx=41, pady=20, command=button_subtract)
 button_multiply = Button(root, text="*", padx=40, pady=20, command=button_multiply)
 button_divide = Button(root, text="/", padx=41, pady=20, command=button_divide)
+button_négyzetgyök = Button(root, text="√", padx="40", pady="20", border="2", bg="yellow", borderwidth="3", foreground="red", command="button_négyzetgyök")
 
 # Put the buttons on the screen
 
@@ -110,6 +127,7 @@ button_equal.grid(row=5, column=1, columnspan=2)
 button_subtract.grid(row=6, column=0)
 button_multiply.grid(row=6, column=1)
 button_divide.grid(row=6, column=2)
+button_négyzetgyök.grid(row=7, column=0, columnspan=3)
 
 
 
