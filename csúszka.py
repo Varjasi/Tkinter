@@ -1,5 +1,17 @@
 from tkinter import *
 import ttkbootstrap as tb
+import pybricks as file
+from pybricks.pupdevices import Motor
+from pybricks.parameters import Port
+from pybricks.parameters import Stop
+from pybricks.hubs import PrimeHub
+import micropython
+from pybricks.tools import wait
+
+hub = PrimeHub()
+
+Bal_motor = Motor(Port.B)
+
 
 root = tb.Window(themename="superhero")
 
@@ -11,12 +23,9 @@ root.geometry('500x350')
 
 def scaler(e):
 	my_label.config(text=f'{int(my_scale.get())}%')
-	global sesbesség
 	sesbesség = int(my_scale.get())
-
-
-
-
+	print(sesbesség)
+	Bal_motor.run(sesbesség)
 
 # Create a Scale/Slider
 my_scale = tb.Scale(root, bootstyle="warning",
@@ -34,4 +43,3 @@ my_label.pack()
 
 
 root.mainloop()
-print(sesbesség)
